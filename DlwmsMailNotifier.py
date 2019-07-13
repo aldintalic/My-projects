@@ -1,7 +1,6 @@
 from selenium import webdriver
 import smtplib
 from selenium.webdriver.firefox.options import Options
-from bs4 import BeautifulSoup
 import getpass
 import time
 
