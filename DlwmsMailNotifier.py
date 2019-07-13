@@ -15,12 +15,9 @@ browser.get('https://www.fit.ba/student/login.aspx')
 
 #Login on DLWMS
 def login():
-    # brojIndeksa = input("Unesite broj indeksa:")
-    # lozinka = getpass.getpass("Unesite lozinku:")
-
-    brojIndeksa = 'ib170067'
-    lozinka = 'El3ktr!c!t3t98'
-
+    brojIndeksa = input("Unesite broj indeksa:")
+    lozinka = getpass.getpass("Unesite lozinku:")
+    
     ib = browser.find_element_by_id('txtBrojDosijea')
     ib.send_keys(brojIndeksa)
 
@@ -40,7 +37,7 @@ def sendMail(message):
     subject = 'NOVA OBAVIJEST NA SISTEMU !!!  ' + message
     header = 'To: ' + fromAdd + '\n' + 'From: ' + toAdd + '\n' + 'Subject: ' + subject
     msg = 'Subject: OBAVIJEST !!!' + '\n' + message
-    server.login('aldin.talic@outlook.com', passEmail)
+    server.login(fromAdd, passEmail)
     server.sendmail(fromAdd, toAdd, header)
     server.quit()
 
