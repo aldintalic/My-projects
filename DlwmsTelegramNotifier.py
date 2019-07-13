@@ -1,7 +1,5 @@
 from selenium import webdriver
-import smtplib
 from selenium.webdriver.firefox.options import Options
-from bs4 import BeautifulSoup
 import getpass
 import time
 import telegram
@@ -18,7 +16,7 @@ telegram_token = '837912044:AAEg-fuq-WGSNhwJpPKxskdQkMWgZxu6yR4'
 def login():
     brojIndeksa = input("Unesite broj indeksa:")
     lozinka = getpass.getpass("Unesite lozinku:")
-
+    
     ib = browser.find_element_by_id('txtBrojDosijea')
     ib.send_keys(brojIndeksa)
 
@@ -31,7 +29,6 @@ def login():
 def sendTelegramMsg(msg, chat_id, token = telegram_token):
     bot = telegram.Bot(token=token)
     bot.sendMessage(chat_id=chat_id, text=msg, parse_mode=telegram.ParseMode.MARKDOWN)
-
 login()
 print("CONNECTED TO DLWMS !")
 
@@ -48,10 +45,19 @@ while True:
     tempDatumVrijeme = tempDatumVrijeme.text[:len(tempDatumVrijeme.text)-1]
     #getting date and time for last notification and checking if it different from datumVrijeme
     if tempDatumVrijeme != datumVrijeme:
-        obavijest = browser.find_element_by_id('lnkNaslov').text
-        sendTelegramMsg(obavijest, '612482025')
+        naslov = browser.find_element_by_id('lnkNaslov')
+        naslov.click()
+        link = browser.current_url
+        naslov = browser.find_element_by_id('lnkNaslov').text
+        message = '[' + naslov + '](' + link + ')' + '\n\n'
+        message += '*Datum: *' + '_' + tempDatumVrijeme[:10] + '_'
+        message += '\n*Vrijeme: *' + '_' + tempDatumVrijeme[11:] + 'h _'
+        message += '\n*Predmet: *' + '_' + browser.find_element_by_id('lblPredmet').text +'_'
+        message += '\n*Autor: *' + '_' + browser.find_element_by_id('linkNapisao').text + '_'
+        sendTelegramMsg(message, '612482025')
         datumVrijeme = tempDatumVrijeme
-
+        browser.find_element_by_id('home').click()
+        
     #waiting 20 seconds and then refreshing page
     time.sleep(20)
     browser.refresh()
