@@ -59,7 +59,7 @@ while True:
         datumVrijeme = tempDatumVrijeme
         browser.find_element_by_id('home').click()
         
-    #waiting 20 seconds and then refreshing page
+    #waiting 60 seconds and then refreshing page
     time.sleep(60)
     browser.refresh()
     browser.implicitly_wait(10)
