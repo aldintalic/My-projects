@@ -3,6 +3,7 @@ from selenium.webdriver.firefox.options import Options
 import getpass
 import time
 import telegram
+
 options = Options()
 options.add_argument('--headless')
 
