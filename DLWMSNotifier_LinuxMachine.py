@@ -10,7 +10,7 @@ options.add_argument('--headless')
 #opening page DLWMS 
 browser = webdriver.Firefox(executable_path=r'/usr/local/bin/geckodriver', options=options)
 browser.get('https://www.fit.ba/student/login.aspx')
-telegram_token = '837912044:AAEg-fuq-WGSNhwJpPKxskdQkMWgZxu6yR4'
+telegram_token =''
 
 #Login on DLWMS
 def login():
