@@ -55,7 +55,7 @@ while True:
         message += '\n*Vrijeme: *' + '_' + tempDatumVrijeme[11:] + 'h _'
         message += '\n*Predmet: *' + '_' + browser.find_element_by_id('lblPredmet').text +'_'
         message += '\n*Autor: *' + '_' + browser.find_element_by_id('linkNapisao').text + '_'
-        sendTelegramMsg(message, '612482025')
+        sendTelegramMsg(message, '')
         datumVrijeme = tempDatumVrijeme
         browser.find_element_by_id('home').click()
         
