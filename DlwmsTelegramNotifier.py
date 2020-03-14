@@ -10,7 +10,7 @@ options.add_argument('--headless')
 #opening page DLWMS - a
 browser = webdriver.Firefox(executable_path=r'C:\Users\talicni\Downloads\geckodriver-v0.24.0-win64\geckodriver.exe', options=options)
 browser.get('https://www.fit.ba/student/login.aspx')
-telegram_token = '837912044:AAEg-fuq-WGSNhwJpPKxskdQkMWgZxu6yR4'
+telegram_token = ''
 
 #Login on DLWMS
 def login():
@@ -54,7 +54,7 @@ while True:
         message += '\n*Vrijeme: *' + '_' + tempDatumVrijeme[11:] + 'h _'
         message += '\n*Predmet: *' + '_' + browser.find_element_by_id('lblPredmet').text +'_'
         message += '\n*Autor: *' + '_' + browser.find_element_by_id('linkNapisao').text + '_'
-        sendTelegramMsg(message, '612482025')
+        sendTelegramMsg(message, '')
         datumVrijeme = tempDatumVrijeme
         browser.find_element_by_id('home').click()
         
